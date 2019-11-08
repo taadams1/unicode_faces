@@ -1,0 +1,130 @@
+﻿<% include partials/header.ejs %>
+    <div class="container">
+	    <div class="row">
+            <div class="col-md">
+                <canvas id="myCanvas" width="334" height="438"></canvas>
+            </div>
+            <div class="col-md d-flex flex-column" id="buttons">
+                <p class="h4">Get New Image</p>
+                <button class="btn btn-light" role="button" onclick="refresh()">Refresh</button>
+                <p class="h4">Do Something Else</p>
+                <button class="btn btn-light">Test Button</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    //display h*w in number of characters
+    const charsWide = 15;
+    const charsHigh = 20;
+
+    //placeholder for character generation
+    const codePointStart = 32;
+    const codePointMax = 140000;
+
+    //set up for drawing characters to canvas
+    //numbers are pixel values
+    const charWidth = 20;
+    const charHeight = 20;
+    const borderPad = 10;
+    const charPad = 1;
+    let cHeight = borderPad * 2 + ((charHeight + charPad) * charsHigh) - charPad;
+    let cWidth = borderPad * 2 + ((charWidth + charPad) * charsWide) - charPad;
+
+    let c = document.getElementById("myCanvas");
+
+    // TODO: Set color variables dynamically
+    let textColor = '#000';
+    let canvasBackground = '#f7f7f7';
+
+    
+    //possible fix for blurry text on canvas
+    let canvasSetup = function (canvas) {
+        // Get the device pixel ratio, falling back to 1.
+        let dpr = window.devicePixelRatio || 1;
+        // Get the size of the canvas in CSS pixels.
+        let rect = canvas.getBoundingClientRect();
+        // Give the canvas pixel dimensions of their CSS
+        // size * the device pixel ratio.
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        let ctx = canvas.getContext('2d');
+        // Scale all drawing operations by the dpr, so you
+        // don't have to worry about the difference.
+        ctx.scale(dpr, dpr);
+        return ctx;
+    }
+
+    let ctx = canvasSetup(c);
+
+    //clear canvas back to blank state
+    let clearCanvas = function () {
+        ctx.beginPath();
+        ctx.fillStyle = canvasBackground;
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.stroke();
+        ctx.fillStyle = textColor;
+    }
+    
+
+    //let ctx = c.getContext('2d');
+
+    //setup for drawing characters
+    ctx.font = '24px Ariel Unicode';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'center';
+
+    let charArray = [];
+
+    //generate random number in apprx. current Unicode range
+    let codePoint = function () {
+        return Math.floor(Math.random() * (codePointMax - codePointStart)) + codePointStart;
+    }
+
+    //fill charArray with characters
+    let fillCharArray = function (arr) {
+        console.log('filling Char Array');
+        for (var row = 0; row < charsHigh; row++) {
+            arr.push([]);
+            for (var col = 0; col < charsWide; col++) {
+                arr[row].push(codePoint());
+            }
+        }
+        console.log('Char Array filled');
+    }
+    fillCharArray(charArray);
+
+    //fill canvas with characters from charArray
+    let fillCanvas = function () {
+        console.log('fillingCanvas');
+        let i = 0;
+        let j = 0;
+        //loop over height & width to fill table cells
+        for (var x = borderPad + (charWidth / 2); x < cWidth - charWidth / 2; x = x + charWidth + charPad) {
+            //console.log('x:' + x);
+            i = 0;
+            for (var y = borderPad; y < cHeight - borderPad; y = y + charHeight + charPad) {
+                //console.log('y:' + y);
+                ctx.fillText(String.fromCharCode(charArray[i][j]), x, y);
+                i++;
+            }
+            j++;
+        }
+
+        console.log('canvas filled \n ----------');
+    }
+    fillCanvas();
+
+    let refresh = function() {
+        console.log('----------\n refreshing');
+        //tempChars = [];
+        charArray = [];
+        fillCharArray(charArray);
+        clearCanvas();
+        fillCanvas();
+    }
+
+</script>
+</body>
+</html>

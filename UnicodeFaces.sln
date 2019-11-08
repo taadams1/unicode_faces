@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "UnicodeFaces", "UnicodeFaces\UnicodeFaces.njsproj", "{A1B67B19-7FAF-4B53-8829-D821D12B60E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1B67B19-7FAF-4B53-8829-D821D12B60E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B67B19-7FAF-4B53-8829-D821D12B60E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B67B19-7FAF-4B53-8829-D821D12B60E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B67B19-7FAF-4B53-8829-D821D12B60E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24FBCDA3-FFB7-41CA-A6F6-F47EFF9A37EE}
+	EndGlobalSection
+EndGlobal
