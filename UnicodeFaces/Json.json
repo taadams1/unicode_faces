@@ -1,0 +1,356 @@
+﻿{
+  ← From
+  target: {
+    "method": "Runtime.exceptionThrown",
+    "params": {
+      "timestamp": 185580384.4975,
+      "exceptionDetails": {
+        "exceptionId": 1,
+        "text": "Uncaught",
+        "lineNumber": 436,
+        "columnNumber": 5,
+        "scriptId": "927",
+        "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Parser.js",
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "pos_result.some",
+              "scriptId": "921",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js",
+              "lineNumber": 85,
+              "columnNumber": 48
+            },
+            {
+              "functionName": "db.query",
+              "scriptId": "921",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js",
+              "lineNumber": 81,
+              "columnNumber": 43
+            },
+            {
+              "functionName": "",
+              "scriptId": "922",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js",
+              "lineNumber": 524,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "",
+              "scriptId": "922",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js",
+              "lineNumber": 490,
+              "columnNumber": 15
+            },
+            {
+              "functionName": "Sequence.end",
+              "scriptId": "933",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js",
+              "lineNumber": 82,
+              "columnNumber": 23
+            },
+            {
+              "functionName": "Query._handleFinalResultPacket",
+              "scriptId": "963",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js",
+              "lineNumber": 138,
+              "columnNumber": 7
+            },
+            {
+              "functionName": "Query.EofPacket",
+              "scriptId": "963",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js",
+              "lineNumber": 122,
+              "columnNumber": 7
+            },
+            {
+              "functionName": "Protocol._parsePacket",
+              "scriptId": "926",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Protocol.js",
+              "lineNumber": 290,
+              "columnNumber": 22
+            },
+            {
+              "functionName": "_parsePacket",
+              "scriptId": "927",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Parser.js",
+              "lineNumber": 432,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "write",
+              "scriptId": "927",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Parser.js",
+              "lineNumber": 42,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "Protocol.write",
+              "scriptId": "926",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Protocol.js",
+              "lineNumber": 37,
+              "columnNumber": 15
+            },
+            {
+              "functionName": "",
+              "scriptId": "922",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js",
+              "lineNumber": 90,
+              "columnNumber": 27
+            },
+            {
+              "functionName": "",
+              "scriptId": "922",
+              "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js",
+              "lineNumber": 524,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "emitOne",
+              "scriptId": "20",
+              "url": "events.js",
+              "lineNumber": 115,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "emit",
+              "scriptId": "20",
+              "url": "events.js",
+              "lineNumber": 210,
+              "columnNumber": 6
+            },
+            {
+              "functionName": "addChunk",
+              "scriptId": "53",
+              "url": "_stream_readable.js",
+              "lineNumber": 262,
+              "columnNumber": 11
+            },
+            {
+              "functionName": "readableAddChunk",
+              "scriptId": "53",
+              "url": "_stream_readable.js",
+              "lineNumber": 249,
+              "columnNumber": 10
+            },
+            {
+              "functionName": "Readable.push",
+              "scriptId": "53",
+              "url": "_stream_readable.js",
+              "lineNumber": 207,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "onread",
+              "scriptId": "71",
+              "url": "net.js",
+              "lineNumber": 600,
+              "columnNumber": 19
+            }
+          ],
+          "parent": {
+            "description": "TCPWRAP",
+            "callFrames": [
+              {
+                "functionName": "init",
+                "scriptId": "40",
+                "url": "internal/inspector_async_hook.js",
+                "lineNumber": 21,
+                "columnNumber": 16
+              },
+              {
+                "functionName": "emitInitNative",
+                "scriptId": "33",
+                "url": "internal/async_hooks.js",
+                "lineNumber": 130,
+                "columnNumber": 42
+              },
+              {
+                "functionName": "Socket.connect",
+                "scriptId": "71",
+                "url": "net.js",
+                "lineNumber": 1000,
+                "columnNumber": 6
+              },
+              {
+                "functionName": "connect",
+                "scriptId": "71",
+                "url": "net.js",
+                "lineNumber": 116,
+                "columnNumber": 34
+              },
+              {
+                "functionName": "connect",
+                "scriptId": "922",
+                "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js",
+                "lineNumber": 78,
+                "columnNumber": 12
+              },
+              {
+                "functionName": "",
+                "scriptId": "77",
+                "url": "C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\app.js",
+                "lineNumber": 23,
+                "columnNumber": 3
+              },
+              {
+                "functionName": "Module._compile",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 649,
+                "columnNumber": 13
+              },
+              {
+                "functionName": "Module._extensions..js",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 663,
+                "columnNumber": 9
+              },
+              {
+                "functionName": "Module.load",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 565,
+                "columnNumber": 31
+              },
+              {
+                "functionName": "tryModuleLoad",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 505,
+                "columnNumber": 11
+              },
+              {
+                "functionName": "Module._load",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 497,
+                "columnNumber": 2
+              },
+              {
+                "functionName": "Module.runMain",
+                "scriptId": "43",
+                "url": "module.js",
+                "lineNumber": 693,
+                "columnNumber": 9
+              },
+              {
+                "functionName": "startup",
+                "scriptId": "19",
+                "url": "bootstrap_node.js",
+                "lineNumber": 203,
+                "columnNumber": 15
+              },
+              {
+                "functionName": "",
+                "scriptId": "19",
+                "url": "bootstrap_node.js",
+                "lineNumber": 624,
+                "columnNumber": 2
+              }
+            ]
+          }
+        },
+        "exception": {
+          "type": "object",
+          "subtype": "error",
+          "className": "TypeError",
+          "description": "TypeError: Cannot read property 'push' of undefined\n    at pos_result.some (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js:86:49)\n    at Array.some (\u003Canonymous\u003E)\n    at Query.db.query (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js:82:44)\n    at Query.\u003Canonymous\u003E (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js:525:10)\n    at Query._callback (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js:491:16)\n    at Query.Sequence.end (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:139:8)\n    at Query.EofPacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:123:8)\n    at Protocol._parsePacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Protocol.js:291:23)\n    at Parser._parsePacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Parser.js:433:10)",
+          "objectId": "{\"injectedScriptId\":1,\"id\":35}",
+          "preview": {
+            "type": "object",
+            "subtype": "error",
+            "description": "TypeError: Cannot read property 'push' of undefined\n    at pos_result.some (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js:86:49)\n    at Array.some (\u003Canonymous\u003E)\n    at Query.db.query (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\routes\\index.js:82:44)\n    at Query.\u003Canonymous\u003E (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js:525:10)\n    at Query._callback (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\Connection.js:491:16)\n    at Query.Sequence.end (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Sequence.js:83:24)\n    at Query._handleFinalResultPacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:139:8)\n    at Query.EofPacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\sequences\\Query.js:123:8)\n    at Protocol._parsePacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Protocol.js:291:23)\n    at Parser._parsePacket (C:\\Users\\admin\\source\\repos\\unicode_faces_repo\\UnicodeFaces\\node_modules\\mysql\\lib\\protocol\\Parser.js:433:10)",
+            "overflow": false,
+            "properties": [
+              {
+                "name": "stack",
+                "type": "string",
+                "value": "TypeError: Cannot read property 'push' of undefine\u2026node_modules\\mysql\\lib\\protocol\\Parser.js:433:10)"
+              },
+              {
+                "name": "message",
+                "type": "string",
+                "value": "Cannot read property 'push' of undefined"
+              }
+            ]
+          }
+        },
+        "executionContextId": 1
+      }
+    }
+  }
+ ← From target: {
+  "method": "Runtime.executionContextDestroyed",
+  "params": { "executionContextId": 1 }
+} Killing process with id: 3836 Terminated: Program ended Waiting for any pending steps or log messages. Current step and log messages complete To client: {
+  "seq": 0,
+  "type": "event",
+  "event": "output",
+  "body": {
+    "category": "telemetry",
+    "output": "debugStopped",
+    "data": {
+      "Versions.DebugAdapterCore": "6.7.19-patch.0",
+      "Versions.DebugAdapter": "1.28.3",
+      "Versions.Target.Version": "v8.12.0",
+      "reason": "Program ended"
+    }
+  }
+} To client: {
+  "seq": 0,
+  "type": "event",
+  "event": "terminated"
+} Websocket closed Terminated: websocket closed From client: disconnect( {}) To client: {
+  "seq": 0,
+  "type": "event",
+  "event": "output",
+  "body": {
+    "category": "telemetry",
+    "output": "FullSessionStatistics/SourceMaps/Overrides",
+    "data": {
+      "Versions.DebugAdapterCore": "6.7.19-patch.0",
+      "Versions.DebugAdapter": "1.28.3",
+      "Versions.Target.Version": "v8.12.0",
+      "aspNetClientAppFallbackCount": 0
+    }
+  }
+} To client: {
+  "seq": 0,
+  "type": "event",
+  "event": "output",
+  "body": {
+    "category": "telemetry",
+    "output": "target/notification/onScriptParsed",
+    "data": {
+      "Versions.DebugAdapterCore": "6.7.19-patch.0",
+      "Versions.DebugAdapter": "1.28.3",
+      "Versions.Target.Version": "v8.12.0",
+      "aggregated.startTime": "[\"1574377656346\",\"1574377656347\",\"1574377656349\",\"1574377656351\",\"1574377656351\",\"1574377656352\",\"1574377656353\",\"1574377656353\",\"1574377656354\",\"1574377656354\",\"1574377656355\",\"1574377656355\",\"1574377656356\",\"1574377656993\",\"1574377656995\",\"1574377656997\",\"1574377656998\",\"1574377657799\",\"1574377657811\",\"1574377657816\",\"1574377657819\",\"1574377657821\",\"1574377657823\",\"1574377657826\",\"1574377657837\",\"1574377657839\"]",
+      "aggregated.successful": "[\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\",\"true\"]",
+      "aggregated.timeTakenInMilliseconds": "[\"11.2291\",\"9.477999\",\"7.908999\",\"6.2001\",\"5.7825\",\"4.7341\",\"4.323499\",\"3.790501\",\"3.4694\",\"3.010099\",\"2.4217\",\"1.8189\",\"1.2188\",\"5.1498\",\"3.095\",\"1.101299\",\"0.616899\",\"2.4016\",\"2.0856\",\"1.876\",\"2.1179\",\"6.6028\",\"4.5443\",\"2.113701\",\"2.017\",\"3.608799\"]"
+    }
+  }
+} Terminated: Got disconnect request To client: {
+  "seq": 0,
+  "type": "response",
+  "request_seq": 10,
+  "command": "disconnect",
+  "success": true
+} To client: {
+  "seq": 0,
+  "type": "event",
+  "event": "output",
+  "body": {
+    "category": "telemetry",
+    "output": "ClientRequest/disconnect",
+    "data": {
+      "Versions.DebugAdapterCore": "6.7.19-patch.0",
+      "Versions.DebugAdapter": "1.28.3",
+      "Versions.Target.Version": "v8.12.0",
+      "successful": "true",
+      "timeTakenInMilliseconds": "1.4947",
+      "requestType": "request"
+    }
+  }
+}

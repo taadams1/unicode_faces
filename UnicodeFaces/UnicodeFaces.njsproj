@@ -32,14 +32,38 @@
     <Compile Include="app.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="public\js\face-api.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="public\js\script.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="public\js\tensor_test.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\index.js">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="Json.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="public\css\style.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\models\face_landmark_68_model-weights_manifest.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\models\face_recognition_model-weights_manifest.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\models\ssd_mobilenetv1_model-weights_manifest.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="README.md" />
+    <Content Include="views\characterCheck.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\index.ejs">
       <SubType>Code</SubType>
     </Content>
@@ -49,6 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\css\" />
+    <Folder Include="public\models\" />
+    <Folder Include="public\js\" />
     <Folder Include="views\" />
     <Folder Include="routes\" />
     <Folder Include="public\" />

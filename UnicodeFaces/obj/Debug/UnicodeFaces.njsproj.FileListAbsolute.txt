@@ -1,0 +1,3 @@
+C:\Users\admin\source\repos\unicode_faces_repo\UnicodeFaces\obj\Debug\UnicodeFaces.njsprojAssemblyReference.cache
+C:\Users\admin\source\repos\unicode_faces_repo\UnicodeFaces\obj\Debug\UnicodeFaces.njsproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\unicode_faces_repo\UnicodeFaces\bin\Microsoft.NodejsTools.WebRole.dll

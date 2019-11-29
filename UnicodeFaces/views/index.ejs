@@ -1,23 +1,38 @@
 ﻿<% include partials/header.ejs %>
     <div class="container">
+        <!-- <div class="row"><span id="errormsg" class="center alert alert-danger"></span></div> -->
 	    <div class="row">
             <div class="col-md">
-                <canvas id="myCanvas" width="334" height="438"></canvas>
+                <canvas id="myCanvas" width="308" height="438"></canvas>
+                <canvas id="overlay" width="308" height="438"></canvas>
             </div>
             <div class="col-md d-flex flex-column" id="buttons">
                 <p class="h4">Get New Image</p>
-                <button class="btn btn-light" role="button" onclick="refresh()">Refresh</button>
-                <p class="h4">Do Something Else</p>
-                <button class="btn btn-light">Test Button</button>
+                <button class="btn btn-light" role="button" onclick="fetchGrid()">New Grid</button>
+                <p class="h4">Detect Face</p>
+                <button class="btn btn-light" role="button" onclick="detectFace()">Submit Canvas</button>
+                <div id="detection-notice" class="alert alert-secondary" role="alert">Awaiting Submission</div>
+                <p class="h4">Update Scores</p>
+                <button class="btn btn-light" role="button" onclick="updateScores()">Send Results</button>
+                <div class="row">
+                    <label for="autotrain" class="label">Auto Train?</label>
+                    <input type="checkbox" class="checkbox" name="autotrain" id="autotrain" />
+                </div>
+                <h4>Insert Test Face</h4>
+                <button class="btn btn-light" role="button" onclick="testFace()">Test Face</button>
+                <h4>Set Auto-Train Iterations</h4>
+                <input type="number" class="input" id="iterations"/>
+                <button class="btn btn-light" role="button" onclick="setIterations()">Set Iterations</button>
             </div>
         </div>
     </div>
 
 </div>
 <script>
+
     //display h*w in number of characters
-    const charsWide = 15;
-    const charsHigh = 20;
+    const charsWide = 18;
+    const charsHigh = 21;
 
     //placeholder for character generation
     const codePointStart = 32;
@@ -25,20 +40,21 @@
 
     //set up for drawing characters to canvas
     //numbers are pixel values
-    const charWidth = 20;
-    const charHeight = 20;
+    const charWidth = 16;
+    const charHeight = 18;
     const borderPad = 10;
-    const charPad = 1;
-    let cHeight = borderPad * 2 + ((charHeight + charPad) * charsHigh) - charPad;
-    let cWidth = borderPad * 2 + ((charWidth + charPad) * charsWide) - charPad;
+    const charPadBottom = 2;
+    let cHeight = borderPad * 2 + ((charHeight + charPadBottom) * charsHigh) - charPadBottom;
+    let cWidth = borderPad * 2 + charWidth * charsWide;
 
-    let c = document.getElementById("myCanvas");
+    let c = document.getElementById('myCanvas');
+    let overlay = document.getElementById('overlay');
 
     // TODO: Set color variables dynamically
     let textColor = '#000';
     let canvasBackground = '#f7f7f7';
 
-    
+
     //possible fix for blurry text on canvas
     let canvasSetup = function (canvas) {
         // Get the device pixel ratio, falling back to 1.
@@ -56,22 +72,33 @@
         return ctx;
     }
 
-    let ctx = canvasSetup(c);
+    let ctx = canvasSetup(c)
+    let ctx_o = canvasSetup(overlay)
 
     //clear canvas back to blank state
     let clearCanvas = function () {
-        ctx.beginPath();
-        ctx.fillStyle = canvasBackground;
-        ctx.fillRect(0, 0, c.width, c.height);
-        ctx.stroke();
-        ctx.fillStyle = textColor;
+        ctx.beginPath()
+        ctx.fillStyle = canvasBackground
+        ctx.fillRect(0, 0, c.width, c.height)
+        ctx.stroke()
+        ctx.fillStyle = textColor
+        ctx_o.clearRect(0, 0, overlay.width, overlay.height)
     }
-    
 
-    //let ctx = c.getContext('2d');
+    let loadScreen = function () {
+        clearCanvas();
+        let x = cWidth / 2;
+        let y = cHeight / 4;
+        let msg = 'character grid loading';
+        let msg2 = 'this may take some time';
+        ctx.fillText(msg, x, y);
+        ctx.fillText(msg2, x, y * 1.5);
+
+    }
+    //let ctx = c.getContext('2d');S
 
     //setup for drawing characters
-    ctx.font = '24px Ariel Unicode';
+    ctx.font = '20px Ariel Unicode';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
 
@@ -86,43 +113,183 @@
     let fillCharArray = function (arr) {
         console.log('filling Char Array');
         for (var row = 0; row < charsHigh; row++) {
-            arr.push([]);
+            arr.push([])
             for (var col = 0; col < charsWide; col++) {
-                arr[row].push(codePoint());
+                arr[row].push(codePoint())
             }
         }
-        console.log('Char Array filled');
+        console.log('Char Array filled')
     }
-    fillCharArray(charArray);
+    //ffillCharArray(charArray)
 
     //fill canvas with characters from charArray
     let fillCanvas = function () {
-        console.log('fillingCanvas');
+        clearCanvas();
+        console.log('fillingCanvas')
         let i = 0;
         let j = 0;
         //loop over height & width to fill table cells
-        for (var x = borderPad + (charWidth / 2); x < cWidth - charWidth / 2; x = x + charWidth + charPad) {
-            //console.log('x:' + x);
+        for (var x = borderPad + (charWidth / 2); x < cWidth - charWidth / 2; x = x + charWidth) {
             i = 0;
-            for (var y = borderPad; y < cHeight - borderPad; y = y + charHeight + charPad) {
-                //console.log('y:' + y);
-                ctx.fillText(String.fromCharCode(charArray[i][j]), x, y);
+            for (var y = borderPad; y < cHeight - borderPad; y = y + charHeight + charPadBottom) {
+
+                ctx.fillText(String.fromCharCode(charArray[i][j]), x, y)
                 i++;
             }
             j++;
         }
 
-        console.log('canvas filled \n ----------');
+        console.log('canvas filled \n ----------')
     }
-    fillCanvas();
+    //fillCanvas()
 
-    let refresh = function() {
+    let refresh = function () {
         console.log('----------\n refreshing');
+        
+        $('#detection-notice').removeClass().addClass('alert alert-secondary').text('Awaiting Submission')
         //tempChars = [];
-        charArray = [];
-        fillCharArray(charArray);
-        clearCanvas();
-        fillCanvas();
+        charArray = []
+        fillCharArray(charArray)
+        clearCanvas()
+        fillCanvas()
+    }
+
+    let testFace = function () {
+        let testFace1 = [
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 40, 40, 40, 41, 41, 40, 41, 40, 40, 41, 41, 32, 32, 32, 32],
+            [32, 32, 40, 41, 40, 41, 41, 40, 41, 40, 40, 41, 40, 41, 41, 32, 32, 32],
+            [32, 40, 40, 40, 41, 40, 41, 40, 41, 41, 40, 41, 40, 40, 41, 41, 32, 32],
+            [40, 41, 40, 40, 41, 32, 32, 32, 32, 32, 32, 32, 40, 40, 41, 40, 41, 32],
+            [40, 41, 41, 32, 95, 95, 95, 32, 32, 32, 95, 95, 95, 32, 40, 41, 41, 32],
+            [41, 40, 32, 168, 46, 240, 44, 62, 32, 60, 44, 240, 46, 168, 32, 41, 40, 32],
+            [40, 124, 32, 32, 32, 32, 32, 32, 166, 32, 32, 32, 32, 32, 32, 124, 41, 32],
+            [41, 92, 32, 32, 32, 32, 32, 100, 95, 98, 32, 32, 32, 32, 32, 47, 40, 32],
+            [32, 32, 92, 32, 32, 32, 61, 9552, 9552, 9552, 61, 32, 32, 32, 47, 32, 32, 32],
+            [32, 32, 32, 32, 92, 32, 32, 32, 175, 32, 32, 32, 47, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 175, 32, 45, 45, 45, 32, 175, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+            [32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32]
+        ]
+        clearCanvas()
+        charArray = testFace1
+        fillCanvas()
+    }
+
+    let minConfidence = 0.15
+    let isFace = false
+    let autoTrain = false
+    let iterations = 0;
+
+    async function runLoad() {
+        await faceapi.loadSsdMobilenetv1Model('/models');
+            //await faceapi.loadFaceLandmarkModel(model);
+        await faceapi.loadFaceRecognitionModel('/models');
+    }
+
+    let setIterations = function () {
+        iterations = $('#iterations').val()
+        console.log('iterations set: ', iterations)
+    }
+
+    async function detectFace() {
+        $('#detection-notice').removeClass().addClass('alert alert-info').text('Awaiting Detection...')
+        if (!isFaceDetectionModelLoaded()) {
+            return
+        }
+        const input = $('#myCanvas').get(0)
+        console.log('input: ',input)
+        const options = new faceapi.SsdMobilenetv1Options({ minConfidence })
+        //console.log('options: ',options)
+        const results = await faceapi.detectSingleFace(input, options)
+        //console.log('results: ', results)
+        if (results) {
+            const canvas = $('#overlay').get(0)
+            faceapi.matchDimensions(canvas, input)
+            faceapi.draw.drawDetections(canvas, faceapi.resizeResults(results, input))
+            $('#detection-notice').removeClass().addClass('alert alert-success').text('Face Detected!')
+            isFace = true
+        } else {
+            $('#detection-notice').removeClass().addClass('alert alert-danger').text('No Face Detected.')
+            isFace = false
+        }
+        //TODO: call database update function
+        if (autoTrain) {
+            updateScores();
+        }
+    }
+
+    $(document).ready(function () {
+        runLoad()
+        loadScreen()
+        fetchGrid()
+
+        $('#autotrain').change(function () {
+            if (this.checked == true) {
+                autoTrain = true
+            } else {
+                autoTrain = false
+            }
+        })
+    })
+
+    const gridURL = '/grid'
+    const gridH = {
+        'Content-Type': 'application/json'
+    }
+    
+    let fetchGrid = async function () {
+        await fetch(gridURL, {
+            method: 'POST', headers: gridH
+        })
+        .then((res) => {
+            return res.json()
+        })
+        .then((response) => {
+
+            console.log('response: ', response)
+            console.log('res.gridOut: ', response.gridOut)
+            return JSON.parse(response.gridOut)
+        }).then((grid) => {
+            charArray = grid
+            fillCanvas()
+            if (autoTrain) {
+                detectFace()
+            }
+        })
+    }
+
+    let updateScores = async function () {
+        let url = '/score'
+
+        await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ face: isFace, grid: charArray })
+        })
+        .then((res) => {
+            if (res.ok) {
+                res.json().then((json) => {
+                    console.log(json);
+                    if (autoTrain && iterations > 0) {
+                        iterations--
+                        fetchGrid()
+                    }
+                    else { console.log('processing done') }
+                })
+            }
+        }).catch((error) => { console.log('error: ', error) });
     }
 
 </script>
